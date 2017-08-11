@@ -1,0 +1,32 @@
+﻿<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">{{viewTitle()}}</h3>
+</div>
+<div class="modal-body" ng-form="filmEditorFrm">
+    <div class="form-group" ng-class="{'has-error':filmEditorFrm.inputTitle.$error.required && filmEditorFrm.inputTitle.$touched}">
+        <label for="inputTitle">Title</label>
+        <input name="inputTitle" id="inputTitle" class="form-control" type="text" placeholder="Title" required ng-model="film.Title" />
+    </div>
+    <div class="form-group" ng-class="{'has-error':filmEditorFrm.inputDirector.$error.required && filmEditorFrm.inputDirector.$touched}">
+        <label for="inputDirector">Director</label>
+        <input name="inputDirector" id="inputDirector" class="form-control" type="text" placeholder="Director" required ng-model="film.Director" />
+    </div>
+    <div class="form-group" ng-class="{'has-error':(filmEditorFrm.inputRelease.$error.required || filmEditorFrm.inputRelease.$invalid) && filmEditorFrm.inputRelease.$touched}">
+        <label for="inputRelease">Release Date</label>
+        <p class="input-group">
+            <input name="inputRelease" id="inputRelease" type="text" class="form-control" placeholder="Release Date" uib-datepicker-popup="{{format}}" 
+                   ng-model="film.ReleaseDate" is-open="releaseDatePicker.opened" alt-input-formats="altInputFormats"
+                   datepicker-options="dateOptions" required />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="openReleaseDatePicker()"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </p>
+    </div>
+    <div class="form-group">
+        <label for="inputRating">Rating</label>
+        <uib-rating id="inputRating" ng-model="film.Rating" max="5" ng-click="ratingClick()"></uib-rating>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="submit" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>
